@@ -1,0 +1,23 @@
+{
+  "name": "sdet-assignment",
+  "version": "1.0.0",
+  "description": "## Overview Welcome to the test assignment for the SDET role at Crexi.  Your solution would showcase your technical expertise, problem-solving skills, and understanding of best practices in test automation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackie-ngoOD/sdet-assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackie-ngoOD/sdet-assignment/issues"
+  },
+  "homepage": "https://github.com/jackie-ngoOD/sdet-assignment#readme",
+  "devDependencies": {
+    "cypress": "^13.13.1"
+  }
+}
