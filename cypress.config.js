@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
@@ -10,5 +11,9 @@ module.exports = defineConfig({
     retries: 0,
     viewportWidth: 1920,
     viewportHeight: 1080,
+    env: {
+      hardcoded_email: process.env.CYPRESS_hardcoded_email,
+      hardcoded_password: process.env.CYPRESS_hardcoded_password,
+    },
   },
 });

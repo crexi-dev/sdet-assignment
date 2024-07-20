@@ -11,22 +11,30 @@ export function signUp(role) {
   Cypress.env("email", emailAddress);
   Cypress.env("password", randomPassword);
 
+  // Visit the home page
   cy.visit("/");
+
+  // Click the Sign Up or Log In btn
   cy.contains(".mdc-button__label", "Sign Up or Log In")
     .should("be.visible")
     .click();
+
+  //Wait for signup modal to appear
   cy.get('[id="signupModal"]').should("be.visible");
+  //Input the credential info
   cy.get('input[name="firstName"]').type("Jackie");
   cy.get('input[name="lastName"]').type("Ngo");
   cy.get('input[name="email"]').type(emailAddress);
   cy.get('input[name="password"]').type(randomPassword);
   cy.get('[aria-label="Select Your Role"]').click();
+  //Add a conditional for listing broker/agent because it has additioal fields
   if (role === "Listing Broker/Agent") {
     cy.get('[data-cy="dropdownItem-Listing Broker/Agent"]').click();
     cy.get('[formcontrolname="licenseStateCode"]').click();
     cy.get('[data-cy="dropdownItem-CA"]').click();
     cy.get('[formcontrolname="licenseNumber"]').type(1234);
   } else {
+    //Allow role to by dynamic and reusable
     cy.get(`[data-cy="dropdownItem-${role}"]`).click();
   }
   cy.get('[formcontrolname="numberOfActiveListings"]').click();
@@ -37,14 +45,16 @@ export function signUp(role) {
 
 export function companyInfo(size) {
   cy.get('[aria-label="Select company size"]').click();
+  //Allow company size to be dynamic
   cy.get(`data-cy="dropdownItem-${size}"`).click();
   cy.get('[formcontrolname="companyName"]').type("QA Company");
   cy.get('[form="profile-information-form"]').click();
 }
 
+// Login will be stored in environment or dynamic from Signup Test
 export function login(
-  email = Cypress.env("email"),
-  password = Cypress.env("password")
+  email = Cypress.env("email") || Cypress.env("hardcoded_email"),
+  password = Cypress.env("password") || Cypress.env("hardcoded_password")
 ) {
   cy.visit("/");
   cy.contains(".mdc-button__label", "Sign Up or Log In")
@@ -54,7 +64,7 @@ export function login(
   cy.get('[formcontrolname="email"]').type(email);
   cy.get('[formcontrolname="password"]').type(password);
   cy.get('[data-cy="button-login"]').click();
-  cy.get('[data-cy="button-login"]').should("not.be.visible");
+  cy.get('[data-cy="authorizationForm"]').should("not.exist");
 }
 
 export function changeAvatar() {
@@ -70,4 +80,60 @@ export function changeAvatar() {
     .selectFile("cypress/fixtures/flower.jpg");
   cy.contains("button", "Update").click();
   cy.contains("Your personal info has been updated.").should("be.visible");
+}
+
+export function signUpErrorCheck() {
+  cy.visit("/");
+  // Click the Sign Up or Log In btn
+  cy.contains(".mdc-button__label", "Sign Up or Log In")
+    .should("be.visible")
+    .click();
+
+  //Wait for signup modal to appear
+  cy.get('[id="signupModal"]').should("be.visible");
+  cy.get('[data-cy="button-signup"]').click();
+  //Check for error message
+  cy.contains("Please enter your first name")
+    .scrollIntoView()
+    .should("be.visible");
+  cy.contains("Please enter your last name")
+    .scrollIntoView()
+    .should("be.visible");
+  cy.contains("Please enter your email address")
+    .scrollIntoView()
+    .should("be.visible");
+  cy.contains("Please enter a password").scrollIntoView().should("be.visible");
+  cy.contains("Please select your industry role")
+    .scrollIntoView()
+    .should("be.visible");
+
+  //Check for valid email
+  cy.get('input[name="email"]').type("a");
+  cy.contains("The Email field is not a valid e-mail address.")
+    .scrollIntoView()
+    .should("be.visible");
+
+  //Check for minimum password
+  cy.get('input[name="password"]').type("a");
+  cy.contains("Minimum 12 characters").scrollIntoView().should("be.visible");
+
+  //Check for state and license number
+  cy.get('[formcontrolname="role"]').click();
+  cy.get('[data-cy="dropdownItem-Listing Broker/Agent"]').click();
+  cy.contains("Please enter state").scrollIntoView().should("be.visible");
+  cy.get('[formcontrolname="licenseNumber"]').type("a");
+  cy.contains("Minimum 4 characters").scrollIntoView().should("be.visible");
+}
+
+export function signOut() {
+  cy.visit("/dashboard/my-crexi");
+  cy.contains("span.mdc-button__label", "Sign Up or Log In").should(
+    "not.exist"
+  );
+  cy.contains("Log Out").click();
+  cy.contains("Are you sure you want to log out?").should("be.visible");
+  cy.contains("span.mdc-button__label", "Yes").click();
+  cy.contains("span.mdc-button__label", "Sign Up or Log In").should(
+    "be.visible"
+  );
 }

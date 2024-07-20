@@ -22,16 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Verify Cypress cache
-        run: npm ci
-
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           browser: electron
-          headless: true
-          record: false
-          start: npm start
           continue-on-error: true
 
       - name: Archive screenshots

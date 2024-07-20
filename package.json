@@ -19,5 +19,8 @@
   "homepage": "https://github.com/jackie-ngoOD/sdet-assignment#readme",
   "devDependencies": {
     "cypress": "^13.13.1"
+  },
+  "dependencies": {
+    "cypress-dotenv": "^2.0.0"
   }
 }

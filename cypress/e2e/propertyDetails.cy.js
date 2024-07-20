@@ -7,17 +7,17 @@ describe("Authenication", () => {
   afterEach(() => {});
 
   it("user is able to view sale properties", function () {
-    login("ngojackie90@gmail.com", "rnw!ytn8KGX5nte8acb");
+    login();
     visitFirstPropertyCard("properties");
   });
 
   it("user is able to view lease properties", function () {
-    login("ngojackie90@gmail.com", "rnw!ytn8KGX5nte8acb");
+    login();
     visitFirstPropertyCard("lease/properties");
   });
 
   it("user is able to view aunction properties", function () {
-    login("ngojackie90@gmail.com", "rnw!ytn8KGX5nte8acb");
+    login();
     visitFirstPropertyCard("properties/Auctions");
   });
 });
