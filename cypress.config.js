@@ -8,5 +8,7 @@ module.exports = defineConfig({
     baseUrl: "https://www.crexi.com/",
     defaultCommandTimeout: 30000,
     retries: 0,
+    viewportWidth: 1920,
+    viewportHeight: 1080,
   },
 });
