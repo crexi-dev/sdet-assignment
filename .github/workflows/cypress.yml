@@ -1,6 +1,5 @@
 name: Cypress Tests
 
-# Triggers the workflow on push, pull request, and manual dispatch
 on:
   push:
   pull_request:
@@ -9,6 +8,9 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        group: [profile-update, property-details, search, user-login]
 
     steps:
       - name: Checkout code
@@ -23,10 +25,16 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
-        with:
-          browser: electron
-          continue-on-error: true
+        run: |
+          if [ "${{ matrix.group }}" == "profile-update" ]; then
+            npx cypress run --spec "cypress/e2e/profileUpdate.cy.js"
+          elif [ "${{ matrix.group }}" == "property-details" ]; then
+            npx cypress run --spec "cypress/e2e/propertyDetails.cy.js"
+          elif [ "${{ matrix.group }}" == "search" ]; then
+            npx cypress run --spec "cypress/e2e/search.cy.js"
+          elif [ "${{ matrix.group }}" == "user-login" ]; then
+            npx cypress run --spec "cypress/e2e/userLogin.cy.js"
+          fi
 
       - name: Archive screenshots
         uses: actions/upload-artifact@v4
