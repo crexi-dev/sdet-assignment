@@ -4,7 +4,8 @@
   "description": "## Overview Welcome to the test assignment for the SDET role at Crexi.  Your solution would showcase your technical expertise, problem-solving skills, and understanding of best practices in test automation.",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run"
+    "test": "npx cypress run",
+    "test:parallel": "node parallel-tests.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/jackie-ngoOD/sdet-assignment#readme",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "cypress": "^13.13.1"
   },
   "dependencies": {
