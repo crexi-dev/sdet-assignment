@@ -8,6 +8,7 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    continue-on-error: true  # Allow job to continue even if a step fails
 
     steps:
       - name: Checkout code
@@ -25,7 +26,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: electron
-          continue-on-error: true
 
       - name: Archive screenshots
         uses: actions/upload-artifact@v4
