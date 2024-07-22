@@ -72,8 +72,17 @@ export function login(
   cy.get('[formcontrolname="password"]').type(password);
   //please submit btn
   cy.get('[data-cy="button-login"]').click();
+}
+
+export function loginSuccess() {
   //wait for the modal to disappear
   cy.get('[data-cy="authorizationForm"]').should("not.exist");
+}
+
+export function loginUnsuccess() {
+  cy.contains("The email/username or password is incorrect.").should(
+    "be.visible"
+  );
 }
 
 export function changeAvatar(type) {

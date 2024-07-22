@@ -2,6 +2,8 @@ import { getUserInfo } from "../support/helper";
 import {
   companyInfo,
   login,
+  loginSuccess,
+  loginUnsuccess,
   signOut,
   signUp,
   signUpErrorCheck,
@@ -123,10 +125,16 @@ describe("Authenication", () => {
     //If you stored your credential in .env, it will use that instead
     //If you hardcorded like below, it will use that instead
     login("fallanfriend@gmail.com", "jackiengo123");
+    loginSuccess();
     signOut();
   });
 
   it("Signup error check", function () {
     signUpErrorCheck();
+  });
+
+  it("user invalid login", function () {
+    login("fake@gmail.com", "jackiengo123");
+    loginUnsuccess();
   });
 });
