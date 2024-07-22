@@ -1,3 +1,4 @@
+import "cypress-mochawesome-reporter/register";
 import { login, loginSuccess, signOut } from "../utils/authenication";
 import { visitFirstPropertyCard } from "../utils/property";
 

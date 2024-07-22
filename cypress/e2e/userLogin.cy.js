@@ -1,3 +1,4 @@
+import "cypress-mochawesome-reporter/register";
 import { getUserInfo } from "../support/helper";
 import {
   cancelLogin,
