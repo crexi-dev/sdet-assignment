@@ -1,4 +1,9 @@
-import { changeAvatar, login, signOut } from "../utils/authenication";
+import {
+  changeAvatar,
+  login,
+  loginSuccess,
+  signOut,
+} from "../utils/authenication";
 import { propertyTypes, realEstateTypes } from "../utils/search";
 
 describe("Search", () => {
@@ -8,6 +13,7 @@ describe("Search", () => {
     //If you hardcorded like below, it will use that instead
     //Don't really need to have this unless we are doing something like favoriting
     //login("fallanfriend@gmail.com", "jackiengo123");
+    //loginSuccess()
     cy.visit("/");
   });
   afterEach(() => {
