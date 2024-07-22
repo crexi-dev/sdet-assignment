@@ -18,6 +18,7 @@ describe("Authenication", () => {
   // Disabling account creation because I was not not able to successfully create them. It looks like
   // production is doing some sort of validation check to prevent bot from creating fake accounts.
   // This should be used in staging
+  // getUserInfo will validate whether the account is in the correct role but I am block due to unauthorized
 
   it("User is able to sign up for an account as a Listing Broker/Agent", function () {
     //const role = "Listing Broker/Agent"
