@@ -1,5 +1,6 @@
 .env
 */screenshots
+*/reports/
 
 # dependencies
 /node_modules
