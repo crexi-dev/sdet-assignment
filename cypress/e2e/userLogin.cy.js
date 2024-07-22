@@ -1,5 +1,6 @@
 import { getUserInfo } from "../support/helper";
 import {
+  cancelLogin,
   companyInfo,
   login,
   loginSuccess,
@@ -134,8 +135,9 @@ describe("Authenication", () => {
     signUpErrorCheck();
   });
 
-  it("user invalid login", function () {
+  it("user cancel login after unsuccess", function () {
     login("fake@gmail.com", "jackiengo123");
     loginUnsuccess();
+    cancelLogin();
   });
 });

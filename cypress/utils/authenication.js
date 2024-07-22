@@ -85,6 +85,11 @@ export function loginUnsuccess() {
   );
 }
 
+export function cancelLogin() {
+  cy.get('[data-cy="button-cancel"]').click();
+  cy.get('[data-cy="authorizationForm"]').should("not.exist");
+}
+
 export function changeAvatar(type) {
   //click the side bar menu
   cy.get('[data-cy="hamburgerButton"]').click();
