@@ -15,14 +15,14 @@ describe("Authenication", () => {
   beforeEach(() => {});
 
   afterEach(() => {
-    //create a clean environment after each test so the new test can run fine
+    // Create a clean environment after each test so the new test can run properly.
     cy.clearCookies();
     cy.clearLocalStorage();
   });
-  // Disabling account creation because I was not not able to successfully create them. It looks like
-  // production is doing some sort of validation check to prevent bot from creating fake accounts.
-  // This should be used in staging
-  // getUserInfo will validate whether the account is in the correct role but I am block due to unauthorized
+  // Disabling account creation because I was not able to successfully create accounts.
+  // It looks like production is doing some sort of validation check to prevent bots from creating fake accounts.
+  // This should be used in staging.
+  // getUserInfo will validate whether the account is in the correct role, but I am blocked due to unauthorized access.
 
   it("User is able to sign up for an account as a Listing Broker/Agent", function () {
     //const role = "Listing Broker/Agent"
@@ -124,9 +124,10 @@ describe("Authenication", () => {
   });
 
   it("user is able to login with their newly created account", function () {
-    //There are 3 ways to use login. If you have done a setup with account creation, it will use that credential
-    //If you stored your credential in .env, it will use that instead
-    //If you hardcorded like below, it will use that instead
+    // There are 3 ways to use login:
+    // 1. If you have done a setup with account creation, it will use those credentials.
+    // 2. If you stored your credentials in .env, it will use those instead.
+    // 3. If you hardcoded them like below, it will use those instead.
     login("fallanfriend@gmail.com", "jackiengo123");
     loginSuccess();
     signOut();

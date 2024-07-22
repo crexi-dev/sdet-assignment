@@ -9,16 +9,16 @@ import { propertyTypes, realEstateTypes } from "../utils/search";
 
 describe("Search", () => {
   beforeEach(() => {
-    //There are 3 ways to use login. If you have done a setup with account creation, it will use that credential
-    //If you stored your credential in .env, it will use that instead
-    //If you hardcorded like below, it will use that instead
-    //Don't really need to have this unless we are doing something like favoriting
+    // There are 3 ways to use login:
+    // 1. If you have done a setup with account creation, it will use those credentials.
+    // 2. If you stored your credentials in .env, it will use those instead.
+    // 3. If you hardcoded them like below, it will use those instead.
     //login("fallanfriend@gmail.com", "jackiengo123");
     //loginSuccess()
     cy.visit("/");
   });
   afterEach(() => {
-    //create a clean environment after each test so the new test can run fine
+    // Create a clean environment after each test so the new test can run properly.
     //signOut();
     cy.clearCookies();
     cy.clearLocalStorage();
