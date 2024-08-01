@@ -1,0 +1,33 @@
+{
+  "name": "sdet-assignment",
+  "version": "1.0.0",
+  "description": "## Overview Welcome to the test assignment for the SDET role at Crexi.  Your solution would showcase your technical expertise, problem-solving skills, and understanding of best practices in test automation.",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^8.57.0",
+    "@playwright/test": "^1.45.3",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^20.14.12",
+    "eslint": "^8.57.0",
+    "globals": "^15.8.0",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
+    "typescript-eslint": "^7.18.0"
+  },
+  "lint-staged": {
+    "*.{js,mjs,ts,tsx}": [
+      "prettier --write",
+      "eslint --max-warnings 0 ."
+    ]
+  }
+}
