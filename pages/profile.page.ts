@@ -25,6 +25,7 @@ export class ProfilePage {
     this.successfulUpdateMsg = page.getByText('Your personal info has been updated.');
     this.fileExceedsErrorMsg = page.getByText('File must not exceed 3 MB');
   }
+
   async uploadPhoto(filePath: string) {
     await this.hamburgerButton.click();
     await this.hamburgerMenuItem.first().click();

@@ -1,11 +1,16 @@
 import { test, expect } from '@playwright/test';
 import { LogInPage } from '../pages/login.page';
 import { ProfilePage } from '../pages/profile.page';
+import { readJsonFile } from '../utils/helpers';
+import path from 'path';
+const env = process.env.ENV || 'prod';
+
+const logins = readJsonFile(path.join(__dirname, `../test_data/${env}/logins.json`));
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('https://www.crexi.com/');
+  await page.goto(process.env.BASE_URL!);
   const loginPage = new LogInPage(page);
-  await loginPage.logIn('yorippin@gmail.com', 'Lakersrule123!');
+  await loginPage.logIn(logins.logins[0].email, logins.logins[0].password);
 });
 
 /*
@@ -25,10 +30,8 @@ test('Update profile picture with JPG and PNG', async ({ page }) => {
 });
 
 /*
-
     Logs in and attempts to update the profile picture with a file that exceeds
     the size allowed. Should produce an error message and no update.
-
 */
 test('Update profile picture with a bigger size than allowed', async ({ page }) => {
   const profilePage = new ProfilePage(page);

@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/compat": "^1.1.1",
     "@eslint/js": "^8.57.0",
     "@playwright/test": "^1.45.3",
     "@types/eslint__js": "^8.42.3",
@@ -26,8 +27,11 @@
   },
   "lint-staged": {
     "*.{js,mjs,ts,tsx}": [
-      "prettier --write",
+      "prettier --write .",
       "eslint --max-warnings 0 ."
     ]
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }

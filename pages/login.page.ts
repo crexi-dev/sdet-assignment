@@ -71,44 +71,24 @@ export class LogInPage {
     this.invalidLogInError = page.getByText('The email/username or password is incorrect.');
   }
 
-  async register() {
+  async register(role: string, email: string, password: string) {
     await this.signInButton.click();
     await this.firstNameBox.click();
     await this.firstNameBox.fill('Test Name');
     await this.lastNameBox.click();
     await this.lastNameBox.fill('LName');
     await this.emailBox.click();
-    await this.emailBox.fill('testemail@email.com');
+    await this.emailBox.fill(email);
     await this.passwordBox.click();
-    await this.passwordBox.fill('testpassword123');
+    await this.passwordBox.fill(password);
     await this.roleDropDown.click();
-    await this.page.getByRole('option', { name: 'Lender' }).click();
+    await this.page.getByRole('option', { name: role }).click();
     await this.activeListingsDropdown.click();
     await this.page.getByText('-10').click();
     await this.phoneBox.click();
     await this.phoneBox.fill('0123456789');
     await this.signUpButton.click();
   }
-
-  async nonUniqueEmailRegister() {
-    await this.signInButton.click();
-    await this.firstNameBox.click();
-    await this.firstNameBox.fill('Test Name');
-    await this.lastNameBox.click();
-    await this.lastNameBox.fill('LName');
-    await this.emailBox.click();
-    await this.emailBox.fill('yorippin@gmail.com');
-    await this.passwordBox.click();
-    await this.passwordBox.fill('testpassword123');
-    await this.roleDropDown.click();
-    await this.page.getByRole('option', { name: 'Lender' }).click();
-    await this.activeListingsDropdown.click();
-    await this.page.getByText('-10').click();
-    await this.phoneBox.click();
-    await this.phoneBox.fill('0123456789');
-    await this.signUpButton.click();
-  }
-
   /*
     If this wasn't an assessment I would also create functions for registering with social media.
     
@@ -123,7 +103,6 @@ export class LogInPage {
 
   async verifyInvalidInput() {
     await this.signInButton.click();
-
     await this.emailBox.click();
     await this.emailBox.fill('invalidemail');
     await this.passwordBox.click();

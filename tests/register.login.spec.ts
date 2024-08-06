@@ -1,37 +1,37 @@
 import { test, expect } from '@playwright/test';
 import { LogInPage } from '../pages/login.page';
+import { readJsonFile } from '../utils/helpers';
+import path from 'path';
+
+const env = process.env.ENV || 'prod';
+const logins = readJsonFile(path.join(__dirname, `../test_data/${env}/logins.json`));
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('https://www.crexi.com/');
+  await page.goto(process.env.BASE_URL!);
 });
 
 /*
-
-  Will not run this test as there is a recaptchca in production. 
+  Will not run this test as there is a recaptcha in production. 
   If I had access to the featureflag API I would turn off recaptcha when running this test.
-
 */
 test.fixme('Register for an Account', async ({ page }) => {
   const loginPage = new LogInPage(page);
-  await loginPage.register();
+  //if I was running this I would generate unique emails example qa+random@gmail.com
+  //could also use faker.js to generate fake data for registering.
+  await loginPage.register('Lender', 'email@email.com', 'testpassword123');
 });
 
 /*
-
   Log in with a non unique email an expect an error popup.
-
 */
-test('Register for an Account with non unique email', async ({ page }) => {
+test('Register for an Account with a non unique email', async ({ page }) => {
   const loginPage = new LogInPage(page);
-  await loginPage.nonUniqueEmailRegister();
-
+  await loginPage.register('Lender', 'yorippin@gmail.com', 'testpassword123');
   await expect(loginPage.invalidRegisterError).toBeVisible();
 });
 
 /*
-
   Verify mandatory fields are required and expect error messages to pop up.
-
 */
 test('Verify Mandatory Fields are Required', async ({ page }) => {
   const loginPage = new LogInPage(page);
@@ -45,9 +45,7 @@ test('Verify Mandatory Fields are Required', async ({ page }) => {
 });
 
 /*
-
   Verify invalid inputs produce error messages.
-
 */
 test('Verify Invalid Inputs', async ({ page }) => {
   const loginPage = new LogInPage(page);
@@ -59,19 +57,15 @@ test('Verify Invalid Inputs', async ({ page }) => {
 });
 
 /*
-
     Happy path log in.
-
 */
 test('Log in to Account', async ({ page }) => {
   const loginPage = new LogInPage(page);
-  await loginPage.logIn('yorippin@gmail.com', 'Lakersrule123!');
+  await loginPage.logIn(logins.logins[0].email, logins.logins[0].password);
 });
 
 /*
-
   Log in with no email or password.
-
 */
 test('Log in empty email and password', async ({ page }) => {
   const loginPage = new LogInPage(page);
@@ -82,13 +76,11 @@ test('Log in empty email and password', async ({ page }) => {
 });
 
 /*
-
   Log in with an invalid password.
-
 */
 test('Log in with invalid password', async ({ page }) => {
   const loginPage = new LogInPage(page);
-  await loginPage.logIn('yorippin@gmail.com', 'invalidpassword');
+  await loginPage.logIn('randomemail@email.com', 'invalidpassword');
 
   await expect(loginPage.invalidLogInError.first()).toBeVisible();
 });
