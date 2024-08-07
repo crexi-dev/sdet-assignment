@@ -58,11 +58,13 @@ async function clickSearchItem(
       propertyAddress!.slice(0, spanIndex).trim() + ', ' + propertyAddress!.slice(spanIndex).trim();
   }
   //opens in a new tab so chained with promise
-  const [newPage] = await Promise.all([
-    context.waitForEvent('page'),
-    results[index].locator('..').getByRole('link').click(),
-  ]);
+  const newPagePromise = context.waitForEvent('page');
+  await results[index].locator('..').getByRole('link').click();
+
+  const newPage = await newPagePromise;
   await newPage.waitForLoadState();
+  //firefox wasn't waiting load event
+  await newPage.waitForLoadState('networkidle');
 
   let title = await newPage.title();
   title = title.split('|')[0].trim(); //remove the | Crexi.com

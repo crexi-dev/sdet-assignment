@@ -63,10 +63,17 @@ jobs:
       - name: List files in report directory
         run: ls -l ./playwright-report/
 
+      - name: Zip the HTML report directory
+        run: |
+          zip -r ./playwright-report/html-report--attempt-${{ github.run_attempt }}.zip ./playwright-report
+
+      - name: List files in report directory
+        run: ls -l ./playwright-report/
+
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
-          name: html-report--attempt-${{ github.run_attempt }}
+          name: ./playwright-report/html-report--attempt-${{ github.run_attempt }}.zip
           path: playwright-report
           retention-days: 14
 
