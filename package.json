@@ -15,6 +15,7 @@
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
     "@eslint/js": "^8.57.0",
+    "@faker-js/faker": "^8.4.1",
     "@playwright/test": "^1.45.3",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.14.12",

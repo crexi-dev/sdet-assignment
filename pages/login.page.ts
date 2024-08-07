@@ -71,12 +71,19 @@ export class LogInPage {
     this.invalidLogInError = page.getByText('The email/username or password is incorrect.');
   }
 
-  async register(role: string, email: string, password: string) {
+  async register(
+    role: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    phone: string
+  ) {
     await this.signInButton.click();
     await this.firstNameBox.click();
-    await this.firstNameBox.fill('Test Name');
+    await this.firstNameBox.fill(firstName);
     await this.lastNameBox.click();
-    await this.lastNameBox.fill('LName');
+    await this.lastNameBox.fill(lastName);
     await this.emailBox.click();
     await this.emailBox.fill(email);
     await this.passwordBox.click();
@@ -86,7 +93,7 @@ export class LogInPage {
     await this.activeListingsDropdown.click();
     await this.page.getByText('-10').click();
     await this.phoneBox.click();
-    await this.phoneBox.fill('0123456789');
+    await this.phoneBox.fill(phone);
     await this.signUpButton.click();
   }
   /*
@@ -129,7 +136,6 @@ export class LogInPage {
 
   async logInSocialMedia() { ... }
 */
-
   //verify mandatory fields are required and look for messages.
   //verify email only allows unique entries
   //verify password only allows characters greater than 12

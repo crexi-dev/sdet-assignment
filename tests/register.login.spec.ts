@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LogInPage } from '../pages/login.page';
 import { readJsonFile } from '../utils/helpers';
+import { faker } from '@faker-js/faker';
 import path from 'path';
 
 const env = process.env.ENV || 'prod';
@@ -17,8 +18,14 @@ test.beforeEach(async ({ page }) => {
 test.fixme('Register for an Account', async ({ page }) => {
   const loginPage = new LogInPage(page);
   //if I was running this I would generate unique emails example qa+random@gmail.com
-  //could also use faker.js to generate fake data for registering.
-  await loginPage.register('Lender', 'email@email.com', 'testpassword123');
+  await loginPage.register(
+    'Lender',
+    faker.person.firstName(),
+    faker.person.lastName(),
+    'email@email.com',
+    'testpassword123',
+    '0123456789'
+  );
 });
 
 /*
@@ -26,7 +33,14 @@ test.fixme('Register for an Account', async ({ page }) => {
 */
 test('Register for an Account with a non unique email', async ({ page }) => {
   const loginPage = new LogInPage(page);
-  await loginPage.register('Lender', 'yorippin@gmail.com', 'testpassword123');
+  await loginPage.register(
+    'Lender',
+    faker.person.firstName(),
+    faker.person.lastName(),
+    'yorippin@gmail.com',
+    'testpassword123',
+    '0123456789'
+  );
   await expect(loginPage.invalidRegisterError).toBeVisible();
 });
 
