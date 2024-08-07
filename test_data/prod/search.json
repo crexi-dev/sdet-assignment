@@ -1,0 +1,20 @@
+{
+  "sale": [
+    {
+      "name": "Search sale properties in Fullerton and Brea",
+      "locations": ["Fullerton,CA", "Brea,CA"],
+      "expectedCount": 35
+    },
+    {
+      "name": "Search Sale Properties in Zipcode 92831",
+      "locations": ["92831"],
+      "expectedCount": 11
+    },
+    {
+      "name": "Search for a County",
+      "locations": ["Grant County Nebraska"],
+      "expectedCount": 1
+    }
+  ],
+  "lease": []
+}
