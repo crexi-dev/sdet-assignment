@@ -63,25 +63,33 @@ jobs:
       - name: List files in report directory
         run: ls -l ./playwright-report/
 
-      - name: Zip the HTML report directory
-        run: |
-          zip -r ./playwright-report/html-report--attempt-${{ github.run_attempt }}.zip ./playwright-report
-
-      - name: List files in report directory
-        run: ls -l ./playwright-report/
-
-      - name: Upload HTML report
+      - name: Upload HTML report as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ./playwright-report/html-report--attempt-${{ github.run_attempt }}.zip
+          name: html-report--attempt-${{ github.run_attempt }}
           path: playwright-report
           retention-days: 14
+
+  upload-report-to-uploadcare:
+    needs: merge-reports
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - name: Download HTML report artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: html-report--attempt-${{ github.run_attempt }}
+          path: ./downloaded-report
+
+      - name: List files in downloaded report directory
+        run: ls -l ./downloaded-report/
 
       - name: Upload report to UploadCare
         env:
           UPLOADCARE_PUB_KEY: ${{ secrets.UPLOADCARE_PUB_KEY }}
         run: |
           curl -F "UPLOADCARE_PUB_KEY=${UPLOADCARE_PUB_KEY}" \
-            -F "file=@./playwright-report/html-report--attempt-${{ github.run_attempt }}.zip" \
+            -F "file=@./downloaded-report/html-report--attempt-${{ github.run_attempt }}.zip" \
             -F "UPLOADCARE_STORE=auto" \
             "https://upload.uploadcare.com/base/"
