@@ -85,6 +85,13 @@ jobs:
       - name: List files in downloaded report directory
         run: ls -l ./downloaded-report/
 
+      - name: Zip the downloaded report directory
+        run: |
+          zip -r ./downloaded-report/html-report--attempt-${{ github.run_attempt }}.zip ./downloaded-report
+
+      - name: List files after zipping
+        run: ls -l ./downloaded-report/
+
       - name: Upload report to UploadCare
         env:
           UPLOADCARE_PUB_KEY: ${{ secrets.UPLOADCARE_PUB_KEY }}
