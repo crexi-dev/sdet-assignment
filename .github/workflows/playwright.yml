@@ -60,13 +60,16 @@ jobs:
       - name: Merge into HTML Report
         run: npx playwright merge-reports --reporter html ./all-blob-reports
 
+      - name: List files in report directory
+        run: ls -l ./playwright-report/
+
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
           name: html-report--attempt-${{ github.run_attempt }}
           path: playwright-report
           retention-days: 14
-          
+
       - name: Upload report to UploadCare
         env:
           UPLOADCARE_PUB_KEY: ${{ secrets.UPLOADCARE_PUB_KEY }}
@@ -74,4 +77,4 @@ jobs:
           curl -F "UPLOADCARE_PUB_KEY=${UPLOADCARE_PUB_KEY}" \
             -F "file=@./playwright-report/html-report--attempt-${{ github.run_attempt }}.zip" \
             -F "UPLOADCARE_STORE=auto" \
-            "https://upload.uploadcare.com/base/"      
+            "https://upload.uploadcare.com/base/"
