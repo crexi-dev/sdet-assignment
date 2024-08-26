@@ -1,0 +1,32 @@
+
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Playwright test output
+playwright-report/
+test-results/
+
+# Playwright downloads and cache
+playwright/.cache/
+playwright/.local-browsers/
+
+# Logs
+*.log
+
+# Build output
+dist/
+build/
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/

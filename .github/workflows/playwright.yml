@@ -1,0 +1,70 @@
+name: Playwright Tests CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+      - 'feature/*'
+  pull_request:
+    branches:
+      - main
+      - 'release/*'
+      - 'feature/*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.17.0'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+
+    # - name: Run Playwright tests
+    #   run: npx playwright test --reporter=html
+
+    - name: Run Playwright tests
+      run: npx playwright test -g @smoke --reporter=html
+
+    # - name: Aggregate Playwright Report
+    #    run: |
+    #     mkdir -p playwright-report
+    #     npx playwright show-report --output=playwright-report/index.html
+
+    - name: Compress the report
+      if: always()
+      run: |
+       zip -r playwright-report.zip playwright-report/
+
+    - name: Upload Playwright Report to Artifactory
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: playwright-report
+        path: playwright-report.zip
+
+    - name: Upload ZIP to Uploadcare
+      if: always()
+      env:
+        UPLOADCARE_PUBLIC_KEY: ${{ secrets.UPLOADCARE_PUB_KEY }}
+        UPLOADCARE_SECRET_KEY: ${{ secrets.UPLOADCARE_PUB_KEY }}
+      run: |
+        curl -X POST \
+          -F "UPLOADCARE_STORE=1" \
+          -F "UPLOADCARE_PUB_KEY=$UPLOADCARE_PUB_KEY" \
+          -F "file=@playwright-report.zip" \
+          https://upload.uploadcare.com/base/
+
+    - name: Cleanup
+      run: rm -rf playwright-report.zip playwright-report/

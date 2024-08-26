@@ -1,0 +1,32 @@
+{
+  "name": "sdet-assignment",
+  "version": "1.0.0",
+  "description": "## Overview Welcome to the test assignment for the SDET role at Crexi.  Your solution would showcase your technical expertise, problem-solving skills, and understanding of best practices in test automation.",
+  "main": "playwright.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "npx playwright test",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "test:headed": "npx playwright test --headed",
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./",
+    "open-trace": "npx playwright show-trace",
+    "local:reporter": "npx playwright show-report",
+    "chrome:install": "npx playwright install chrome",
+    "safari:install": "npx playwright install webkit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.9.1",
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.4.2",
+    "eslint": "^9.9.1",
+    "eslint-plugin-react": "^7.35.0",
+    "globals": "^15.9.0"
+  }
+}
