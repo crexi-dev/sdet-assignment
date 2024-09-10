@@ -1,0 +1,11 @@
+{
+    "invalidEmail":" The Email field is not a valid e-mail address. ",
+    "missedEmail":" Please enter your email address ",
+    "missedPassword":"Please enter a password",
+    "missedFirstName":" Please enter your first name ",
+    "missedLastName":" Please enter your last name ",
+    "existingEmail":"Input data validation failed",
+    "missedRole":"Please select your industry role",
+    "passwordMinLengthError": "Minimum 12 characters",
+    "loginInvalidData": "The email/username or password is incorrect."
+    }

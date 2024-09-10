@@ -1,0 +1,176 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-09-10T14:41:59.833Z",
+    "end": "2024-09-10T14:42:37.956Z",
+    "duration": 38123,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "26cf028e-75e1-4f1b-92bd-483c320905a0",
+      "title": "",
+      "fullFile": "cypress\\e2e\\homePage\\searchPage.spec.cy.js",
+      "file": "cypress\\e2e\\homePage\\searchPage.spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2ba70f4c-eb40-4f2a-8ecf-90b231bf0732",
+          "title": "Search",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should search by Keyword",
+              "fullTitle": "Search Should search by Keyword",
+              "timedOut": null,
+              "duration": 7257,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_main.default.searchBar.type(\"test\", {\n  force: true\n});\n_main.default.searchButton.click();\ncy.url().should(\"contain\", \"?sort=Relevance&term=test\");\n_listing.default.listingElements.should(\"be.visible\");",
+              "err": {},
+              "uuid": "c14c6f43-a0b4-4961-8c1b-58e4f74320bc",
+              "parentUUID": "2ba70f4c-eb40-4f2a-8ecf-90b231bf0732",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should search by City using helper",
+              "fullTitle": "Search Should search by City using helper",
+              "timedOut": null,
+              "duration": 7572,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', 'https://api.crexi.com/assets/search').as('searchResults');\n_main.default.searchBar.type(\"Los\");\n// cy.contains(\"Los Angeles\").click();\ncy.get('[data-cy=\"searchSuggestionItem\"] [title=\"Los Angeles, CA\"]').click();\ncy.get(\"h1\").should(\"contain\", \" Los Angeles, CA Properties for Sale \");\ncy.wait('@searchResults');\ncy.get('[class=\"search-bar-pill-text\"]').should(\"have.text\", \"Los Angeles, CA\");\n_listing.default.listingElements.should(\"be.visible\");",
+              "err": {},
+              "uuid": "eccf9647-0e83-4407-9b68-807f7bc8147d",
+              "parentUUID": "2ba70f4c-eb40-4f2a-8ecf-90b231bf0732",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should turn the map on/off",
+              "fullTitle": "Search Should turn the map on/off",
+              "timedOut": null,
+              "duration": 6649,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"properties?placeIds%5B%5D=ChIJE9on3F3HwoAR9AhGJW_fL-I&mapZoom=9\");\ncy.wait(3000);\n_listing.default.mapButton.should(\"have.attr\", \"aria-checked\", \"true\");\n_listing.default.googleMapElement.should(\"have.attr\", \"class\", \"ng-star-inserted\");\n_listing.default.mapButton.click();\n_listing.default.mapButton.should(\"have.attr\", \"aria-checked\", \"false\");\ncy.url().should(\"contain\", \"showMap=false\");\n_listing.default.googleMapElement.should(\"have.attr\", \"class\", \"ng-star-inserted hide-map-view\");",
+              "err": {},
+              "uuid": "e9789d12-7b11-4c35-9972-0e5c76ef64bc",
+              "parentUUID": "2ba70f4c-eb40-4f2a-8ecf-90b231bf0732",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should search by Property type",
+              "fullTitle": "Search Should search by Property type",
+              "timedOut": null,
+              "duration": 7650,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_main.default.propertyTypeDropDown.click();\n_main.default.allCheckBoxAtPropertyType.click();\ncy.contains(\" Senior Living \").click();\n_main.default.searchButton.click();\ncy.url().should(\"contain\", \"properties?types%5B%5D=Senior%20Living\");",
+              "err": {},
+              "uuid": "2646df62-aad5-4310-9caf-35de289f7795",
+              "parentUUID": "2ba70f4c-eb40-4f2a-8ecf-90b231bf0732",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should filter search by Price",
+              "fullTitle": "Search Should filter search by Price",
+              "timedOut": null,
+              "duration": 8051,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// cy.intercept(\"POST\", \"https://api.crexi.com/assets/search\").as(\"stableDom\");\nconst minValue = 1000000;\nconst maxValue = 1200000;\ncy.visit(\"/properties\");\n_listing.default.priceFilter.click();\n_listing.default.minPriceInput.type(minValue);\n_listing.default.maxPriceInput.type(maxValue);\n_listing.default.excludeUnpricedCheckbox.check();\n_listing.default.applyButton.click();\n_listing.default.closePopUp.click();\ncy.url().should(\"contain\", `askingPriceMax=${maxValue}&askingPriceMin=${minValue}`);\ncy.wait(2000);\n// cy.wait(\"@stableDom\").then((interception) => {\n//   console.log(interception);\n// });\nconst elementsToCheck = [0, 1, 20, 58, 59];\nelementsToCheck.forEach(index => {\n  cy.get('[data-cy=\"propertyPrice\"]').eq(index).invoke(\"text\").then(text => {\n    const price = Number(text.replace(/[$,]/g, \"\"));\n    cy.wrap(price).should(\"be.within\", minValue, maxValue, `Element at index ${index} has a price of ${text}`);\n  });\n});",
+              "err": {},
+              "uuid": "e384b22e-30e6-4872-bf3e-3a99448ca108",
+              "parentUUID": "2ba70f4c-eb40-4f2a-8ecf-90b231bf0732",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c14c6f43-a0b4-4961-8c1b-58e4f74320bc",
+            "eccf9647-0e83-4407-9b68-807f7bc8147d",
+            "e9789d12-7b11-4c35-9972-0e5c76ef64bc",
+            "2646df62-aad5-4310-9caf-35de289f7795",
+            "e384b22e-30e6-4872-bf3e-3a99448ca108"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 37179,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}

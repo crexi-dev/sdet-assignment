@@ -1,0 +1,17 @@
+# Environment variables
+.env
+
+# Cypress screenshots and videos
+cypress/screenshots/
+cypress/videos/
+
+# Cypress reports
+cypress/reports/
+
+# Node.js dependencies
+node_modules/
+
+# Miscellaneous
+.DS_Store
+*.log
+*.tmp
