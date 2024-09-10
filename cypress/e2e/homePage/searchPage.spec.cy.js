@@ -15,6 +15,7 @@ describe("Search", () => {
     cy.url().should("contain", "?sort=Relevance&term=test");
     listingPage.listingElements.should("be.visible");
   });
+
   it("Should search by City using helper", () => {
     cy.intercept('POST', 'https://api.crexi.com/assets/search').as('searchResults')
     mainPage.searchBar.type("Los");
@@ -25,6 +26,7 @@ describe("Search", () => {
     cy.get('[class="search-bar-pill-text"]').should("have.text", "Los Angeles, CA");
     listingPage.listingElements.should("be.visible");
   });
+
   it("Should turn the map on/off", () => {
     cy.visit("properties?placeIds%5B%5D=ChIJE9on3F3HwoAR9AhGJW_fL-I&mapZoom=9");
     cy.wait(3000);
@@ -35,6 +37,7 @@ describe("Search", () => {
     cy.url().should("contain", "showMap=false");
     listingPage.googleMapElement.should("have.attr", "class", "ng-star-inserted hide-map-view");
   });
+
   it("Should search by Property type", () => {
     mainPage.propertyTypeDropDown.click();
     mainPage.allCheckBoxAtPropertyType.click();
@@ -42,6 +45,7 @@ describe("Search", () => {
     mainPage.searchButton.click();
     cy.url().should("contain", "properties?types%5B%5D=Senior%20Living");
   });
+  
   it("Should filter search by Price", () => {
     // cy.intercept("POST", "https://api.crexi.com/assets/search").as("stableDom");
     const minValue = 1000000;

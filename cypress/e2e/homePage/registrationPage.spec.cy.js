@@ -14,7 +14,9 @@ describe("Registration", () => {
 
   it("Should Sign Up using valid data as Owner/Property Manager", () => {
     //we can use 3 way of passing data:
-    // 1.Writing them manually, 2.Using fakerjs 3.Putting them within fixtures file to
+    // 1.Writing them manually, 2.Using fakerjs 3.Putting them within fixtures file
+    // since the test doesnt allow me to register user (see line 28 comment), i would simply hardcode it
+    //My usual approach is to user faker
     mainPage.signupAndLoginButton.click();
     registrationForm.firstNameInputField.type("TestName");
     registrationForm.lastNameInputField.type("TestLastName");
@@ -65,7 +67,7 @@ describe("Registration", () => {
   it("Should Not sign up with invalid email format(no '@' symbol)", () => {
     mainPage.signupAndLoginButton.click();
     cy.wait(1500);
-    registrationForm.emailInputField.type("emailemail.com");
+    registrationForm.emailInputField.type(verification.invalidEmailPattern);
     registrationForm.signUpButton.click();
     registrationForm.emailErrorMessage.should("be.visible").and("have.text", errorMessage.invalidEmail);
   });
@@ -76,6 +78,7 @@ describe("Registration", () => {
     registrationForm.signUpButton.click();
     registrationForm.passwordErrorMessage.should("be.visible").and("have.text", errorMessage.passwordMinLengthError);
   });
+
   it("Should Not Log in with invalid user data", () => {
     mainPage.signupAndLoginButton.click();
     registrationForm.logInTab.click();
