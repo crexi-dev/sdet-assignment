@@ -41,5 +41,5 @@ jobs:
         run: |
           curl -F "UPLOADCARE_PUB_KEY=1e9a01d70860ee491ef0" \
                -F "file=@cypress/reports/mochawesome-reports.zip" \
-               -H "Content-Type: multipart/form-data" \
+               -F "UPLOADCARE_STORE=auto" \
                "https://upload.uploadcare.com/base/"
