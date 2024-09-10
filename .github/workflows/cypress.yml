@@ -39,13 +39,13 @@ jobs:
       
       - name: Zip the downloaded reports
         run: |
-            zip -r ./downloaded-reports/mochawesome-reports.zip ./downloaded-reports
+          zip -r ./downloaded-reports/mochawesome-reports.zip ./downloaded-reports
   
       - name: Upload ZIP file to Uploadcare
         env: 
-         UPLOADCARE_PUB_KEY: ${{ secrets.UPLOADCARE_PUBLIC_KEY }}
+          UPLOADCARE_PUB_KEY: ${{ secrets.UPLOADCARE_PUBLIC_KEY }}
         run: |
-          curl -F "UPLOADCARE_PUB_KEY=${{ secrets.UPLOADCARE_PUBLIC_KEY }}" \
-               -F "file=@cypress/reports/mochawesome-reports.zip" \
+          curl -F "UPLOADCARE_PUB_KEY=${UPLOADCARE_PUB_KEY}" \
+               -F "file=@./downloaded-reports/mochawesome-reports.zip" \
                -F "UPLOADCARE_STORE=auto" \
                "https://upload.uploadcare.com/base/"
