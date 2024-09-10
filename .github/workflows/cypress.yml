@@ -35,11 +35,17 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: mochawesome-reports
-          path: cypress/reports/
-
-      - name: Upload ZIP file to Uploadcare
+          path: ./downloaded-reports
+      
+      - name: Zip the downloaded reports
         run: |
-          curl -F "UPLOADCARE_PUB_KEY=1e9a01d70860ee491ef0" \
+            zip -r ./downloaded-reports/mochawesome-reports.zip ./downloaded-reports
+  
+      - name: Upload ZIP file to Uploadcare
+        env: 
+         UPLOADCARE_PUB_KEY: ${{ secrets.UPLOADCARE_PUBLIC_KEY }}
+        run: |
+          curl -F "UPLOADCARE_PUB_KEY=${{ secrets.UPLOADCARE_PUBLIC_KEY }}" \
                -F "file=@cypress/reports/mochawesome-reports.zip" \
                -F "UPLOADCARE_STORE=auto" \
                "https://upload.uploadcare.com/base/"
