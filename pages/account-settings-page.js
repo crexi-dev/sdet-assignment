@@ -52,7 +52,8 @@ class AccountSettingsPage extends HomePage {
    */
   async uploadProfilePicture(file) {
     await this.editProfilePicture.setInputFiles(file);
-    await this.updatePersonalData.click({delay: 2000}, {force: true});
+    await this.updatePersonalData.waitFor({isVisible: true}, {timeout: 5000});
+    await this.updatePersonalData.click();
   }
 }
 
