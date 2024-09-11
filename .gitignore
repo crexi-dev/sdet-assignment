@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+
+# Playwright artifacts
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Log files
+*.log
+
+# Build artifacts
+dist/
+build/
+
+# Playwright storage state
+storageState.json
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

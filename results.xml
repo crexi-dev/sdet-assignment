@@ -1,0 +1,18 @@
+<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="97.47969799999998">
+<testsuite name="property-details-and-search.spec.js" timestamp="2024-09-11T01:16:14.226Z" hostname="chrome" tests="2" failures="0" skipped="0" time="95.144" errors="0">
+<testcase name="Property related tests: View property details and search property › Property Details: Users can click on a property to view its details." classname="property-details-and-search.spec.js" time="68.909">
+</testcase>
+<testcase name="Property related tests: View property details and search property › Users can search property by property status criteria" classname="property-details-and-search.spec.js" time="26.235">
+</testcase>
+</testsuite>
+<testsuite name="signup-and-login.spec.js" timestamp="2024-09-11T01:16:14.226Z" hostname="chrome" tests="2" failures="0" skipped="0" time="54.108" errors="0">
+<testcase name="User Login: Users can register and log in with a username and password. › Sign Up to Crexi" classname="signup-and-login.spec.js" time="33.514">
+</testcase>
+<testcase name="User Login: Users can register and log in with a username and password. › Log In to Crexi" classname="signup-and-login.spec.js" time="20.594">
+</testcase>
+</testsuite>
+<testsuite name="update-profile-photo.spec.js" timestamp="2024-09-11T01:16:14.226Z" hostname="chrome" tests="1" failures="0" skipped="0" time="50.576" errors="0">
+<testcase name="Upload profile photo and cover › Upload your profile photo " classname="update-profile-photo.spec.js" time="50.576">
+</testcase>
+</testsuite>
+</testsuites>
