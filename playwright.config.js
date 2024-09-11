@@ -26,7 +26,7 @@ module.exports = defineConfig({
   // Test timeout
   timeout: 180000,
   fullyParralel: true,
-  // viewport: { width: 1920, height: 1080 },
+  viewport: { width: 1920, height: 1080 },
   //Retry on CI only
   retries: process.env.CI ? 1 : 0,
   // Number of workers on CI, use default
