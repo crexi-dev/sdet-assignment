@@ -1,0 +1,52 @@
+name: Crexi Playwright CI
+
+on:
+  push:
+    branches:
+      - '*'  
+  pull_request:
+    branches:
+      - '*'  
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Create .env file from secrets
+        run: |
+          echo "USER_PASSWORD=${{ secrets.USER_PASSWORD }}" >> .env
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
+
+      - name: Run Playwright tests and generate report
+        run: npx playwright test --reporter=html
+
+      - name: Upload Playwright test report as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: playwright-report
+          path: playwright-report  
+
+      - name: Upload report to Uploadcare
+        run: |
+          curl -X POST \
+            -F "UPLOADCARE_PUB_KEY=<your-public-key>" \
+            -F "UPLOADCARE_STORE=1" \
+            -F "file=@./playwright-report/index.html" \
+            "https://upload.uploadcare.com/base/"
+        env:
+          UPLOADCARE_SECRET_KEY: ${{ secrets.UPLOADCARE_SECRET_KEY }}

@@ -1,0 +1,12 @@
+[
+    {
+        "role": "broker/agent",
+        "email": "ramsencrexi@outlook.com",
+        "type": "email"
+    },
+    {
+        "role": "owner",
+        "email": "ramsencrexi@gmail.com",
+        "type": "email"
+    }
+]

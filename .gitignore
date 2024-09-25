@@ -1,0 +1,25 @@
+# Node.js modules
+node_modules/
+
+# Playwright test results and screenshots
+test-results/
+screenshots/
+videos/
+traces/
+
+# Environment variables 
+.env
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Playwright browser cache 
+.playwright/
+
+# Coverage reports 
+coverage/
+
+# VS Code settings 
+.vscode/
+

@@ -1,45 +1,35 @@
-# SDET Assignment
+# Ramsen Constantione - SDET Assignment
 
 ## Overview
-Welcome to the test assignment for the SDET role at Crexi. 
-Your solution would showcase your technical expertise, problem-solving skills, and understanding of best practices in test automation.
+This solution SDET assignment is done in Playwright with Javascript.
 
-## Task
+## Playwright Automation Framework Setup Guide
+1. **Clone the repository:**  
+   `git clone <repository-url>`
+2. **Install Node.js:**  
+   Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org).
+3. **Install project dependencies:**  
+   `npm install`
+4. **Install Playwright browsers:**  
+   `npx playwright install --with-deps`
+5. **Framework dependencies:**  
+   The framework uses Faker.js and dotenv.
+6. **Create a `.env` file in the project root:**  
+   Set your environment variables (stored in GitHub secrets):  
+   `echo "USER_PASSWORD=yourpassword" >> .env`  
+   `echo "BASE_URL=https://your-base-url.com" >> .env`
+7. **Run the tests:**  
+   `npm run test`
 
-Design and implement an automated test suite for crexi.com testing the following functionality
+## Project Notes
+1. Test users are stored in `users-testdata.json`, while the password for these users is in the `.env` file.
+2. Tests are located in the `tests` folder.
+3. Page objects containing element variables are in the `pageobjects` folder.
+4. Media for uploads is in the `assets` folder.
+5. The YAML file accesses GitHub secrets for UploadCare and .env file creation.
 
-* User Login: Users can register and log in with a username and password.
-* Profile Update: Users can update their profile picture 
-* Property Details: Users can click on a property to view its details.
-* Search: Users can search for properties based on different criteria (pick one)
-
-Use Cypress or Playwright.
-
-Ensure your tests are robust and can handle various edge cases.
-
-Apply the same principles you'd apply in real life regarding setup, teardown, scaling out, etc. If something can't be done because of the limited access to the environment, please leave the code comments on how you'd approach it if you had access. 
-
-Set up CI using GitHub Actions (or any other CI platform) to run your tests automatically on every push to the repository. 
-As a part of CI run, aggregate the test report and upload it to http://uploadcare.com.
-
-Include the configuration file and instructions for setting up the CI environment. 
-
-## Submission
-
-Fork the provided GitHub repository and create a new branch for your submission named `firstname-lastname`
-
-Commit your code and CI configuration to the branch.
-
-Create a pull request (PR) with a clear description of your changes and instructions for running your tests.
-
-Ensure your PR includes detailed setup instructions and any necessary environment configurations.
-
-Ensure the CI runs successfully.
-
-## Contact
-Please submit a GitHub issue if you have any questions or need further clarification. 
-
-Note:
-This assignment represents real-world tasks you might encounter at Crexi and is intended to find out if we're a good match. We encourage you to approach it with the same professionalism and attention to detail that you would apply to your daily work.
-
-We are excited to look over your submission. Good luck!
+## Test Notes
+1. The sign up test cases are skipped at the moment as email aliasing and fakerjs emails are not accepted by the sign up form.
+2. My user `ramsencrexi@google.com` in `users-testdata.json` should be `"type": "google"`, but Google log in does not work in headless mode. It currently uses email log in. 
+2. Bugs I found relating to tests have the text `"BUG:"` above them.
+3. I used a single critieria for my search tests, but can easily expand to more property types with what I have there.
