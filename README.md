@@ -1,6 +1,6 @@
 # **Ramsen Constantine - SDET Assignment Overview**
 
-This solution SDET assignment is done in Playwright with Javascript.
+This SDET assignment solution is done in Playwright with Javascript.
 
 ## Playwright Automation Framework Setup Guide
 1. **Clone the repository:**  
