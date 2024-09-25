@@ -1,4 +1,4 @@
-# Ramsen Constantione - SDET Assignment
+# Ramsen Constantine - SDET Assignment
 
 ## Overview
 This solution SDET assignment is done in Playwright with Javascript.
