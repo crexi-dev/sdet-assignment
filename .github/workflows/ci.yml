@@ -42,11 +42,12 @@ jobs:
           path: playwright-report  
 
       - name: Upload report to Uploadcare
+        if: always()
         run: |
-          curl -X POST \
-            -F "UPLOADCARE_PUB_KEY=<your-public-key>" \
-            -F "UPLOADCARE_STORE=1" \
-            -F "file=@./playwright-report/index.html" \
-            "https://upload.uploadcare.com/base/"
+            curl -X POST \
+              -F "UPLOADCARE_STORE=1" \
+              -F "UPLOADCARE_PUB_KEY=${{ secrets.UPLOADCARE_PUBLIC_KEY }}" \
+              -F "file=@playwright-report/index.html" \
+              https://upload.uploadcare.com/base/
         env:
           UPLOADCARE_SECRET_KEY: ${{ secrets.UPLOADCARE_SECRET_KEY }}
