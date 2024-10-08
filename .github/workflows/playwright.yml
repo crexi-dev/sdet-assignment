@@ -16,11 +16,13 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Lint
+      run: npm run lint
     - name: Run Playwright tests
     # Multiple browsers would be part of test suite
     # setting to only chromiun to prevent concurrency issues.
     # Ideally this would be batched.
-      run: npx playwright test --project chromiun
+      run: npm run test
     - name: Upload report file
       run: npx ts-node ./scripts/report-upload.ts
     - uses: actions/upload-artifact@v4

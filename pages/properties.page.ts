@@ -7,20 +7,21 @@ export class PropertiesPage extends BasePom {
             const card = () => new ByXpathElement(this.page, "//cui-card", cardOptions);
             return {
                 card,
-                title: () => new NestedElement({
-                    element: card(),
-                    child: {
-                        element: new ByDataCyElement(this.page, "propertyName")
-                    }
-                }),
-                address: () => new NestedElement({
-                    element: card(),
-                    child: {
-                        element: new ByDataCyElement(this.page, "propertyAddress")
-                    }
-                })
-            }
-        }
-
-    }
+                title: () =>
+                    new NestedElement({
+                        element: card(),
+                        child: {
+                            element: new ByDataCyElement(this.page, "propertyName"),
+                        },
+                    }),
+                address: () =>
+                    new NestedElement({
+                        element: card(),
+                        child: {
+                            element: new ByDataCyElement(this.page, "propertyAddress"),
+                        },
+                    }),
+            };
+        },
+    };
 }

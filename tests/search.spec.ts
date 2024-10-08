@@ -14,14 +14,16 @@ test.describe("Search Tests", () => {
     test.beforeAll(async ({ browser }) => {
         context = new TestContext(browser);
         await context.initNewContext();
-    })
+    });
 
     test.beforeEach(async () => {
         await context.initNewPage();
         landingPage = new LandingPage(context.page);
         propertiesPage = new PropertiesPage(context.page);
-        await landingPage.navigate();
-        await landingPage.actions.login(user);
+        await test.step("Navigating to landing page and logging in.", async () => {
+            await landingPage.navigate();
+            await landingPage.actions.login(user);
+        });
     });
 
     test.afterAll(async () => {
@@ -29,11 +31,15 @@ test.describe("Search Tests", () => {
     });
 
     test("User can filter search", async () => {
-        await landingPage.actions.filterSearch(["Retail"]);
         const searchTerm = "Los Angeles, CA";
-        await landingPage.actions.searchProperties(searchTerm);
-        await propertiesPage.waitForSpinner();
-        await expect(propertiesPage.elements.header().get()).toHaveText(`${searchTerm} Retail Properties for Sale`);
-        expect(await propertiesPage.elements.propertyListing().card().get().count()).toEqual(60)
-    })
+        await test.step(`Filtering search to only include retail locations, and searching for properties in ${searchTerm}`, async () => {
+            await landingPage.actions.filterSearch(["Retail"]);
+            await landingPage.actions.searchProperties(searchTerm);
+        });
+        await test.step("Verifying retail properties are displayed.", async () => {
+            await propertiesPage.waitForSpinner();
+            await expect(propertiesPage.elements.header().get()).toHaveText(`${searchTerm} Retail Properties for Sale`);
+            expect(await propertiesPage.elements.propertyListing().card().get().count()).toEqual(60);
+        });
+    });
 });

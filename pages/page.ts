@@ -1,25 +1,29 @@
-import { Locator, Page } from "playwright"
+import { Locator, Page } from "playwright";
 
 /**
  * Provides basic interface for page element refinement.
  */
 export interface IPageElementOptions {
     filter?: {
-        has?: Locator,
-        hasNot?: Locator,
-        hasText?: string | RegExp,
-        hasNotText?: string | RegExp,
-    },
+        has?: Locator;
+        hasNot?: Locator;
+        hasText?: string | RegExp;
+        hasNotText?: string | RegExp;
+    };
     onlyVisible?: boolean;
-    index?: "first" | "last" | number
+    index?: "first" | "last" | number;
 }
 
 /**
  * Base class for Page element to provide a consistent interface for all page elements.
  */
 abstract class PageElement {
-    constructor(protected page: Page, protected locator: string | Locator, private options?: IPageElementOptions) {}
-    
+    constructor(
+        protected page: Page,
+        protected locator: string | Locator,
+        private options?: IPageElementOptions
+    ) {}
+
     /**
      * This is used to generate the locator string specific to the type of element.
      */
@@ -41,7 +45,7 @@ abstract class PageElement {
             return loc;
         }
         if (this.options.onlyVisible) {
-            console.log("hello")
+            console.log("hello");
             return loc.locator("visible=true");
         }
         if (!this.options.index) {
@@ -85,7 +89,6 @@ export class ByTitleElement extends PageElement {
     }
     protected constructLocator = () => `[title="${this.locator}"]`;
 }
-
 
 /**
  * Retrieve element resolved using the formcontrolname attribute.
@@ -150,7 +153,7 @@ export class ByLocator extends PageElement {
 /** Interface that represents structure of nested element */
 export interface INestedElement {
     element: PageElement;
-    child?: INestedElement
+    child?: INestedElement;
 }
 
 /** Retrieve a compound nested element. */
@@ -160,16 +163,13 @@ export class NestedElement {
     get() {
         const getElement = (current: INestedElement): Locator => {
             if (current.child) {
-                
-                return current.element.get().locator(getElement(current.child))
+                return current.element.get().locator(getElement(current.child));
             }
-            return current.element.get()
-
-        }
+            return current.element.get();
+        };
         return getElement(this.elements);
     }
 }
-
 
 /**
  * Base class for POMs.
@@ -177,25 +177,25 @@ export class NestedElement {
 export abstract class BasePom {
     /**
      * Currently static, this would be changed to be resolved through a function call
-     * that uses an environment variable to determine correct base url for environment 
+     * that uses an environment variable to determine correct base url for environment
      * tests are being run against.
      */
-    protected baseUrl: string = "https://www.crexi.com/"
+    protected baseUrl: string = "https://www.crexi.com/";
     elements: unknown;
     actions: unknown;
 
     constructor(protected page: Page) {}
-    navigate: () => Promise<void> | void
+    navigate: () => Promise<void> | void;
 
     async waitForSpinner() {
-       const  spinner = new ByCssElement(this.page, ".cui-spinner-loading").get();
-       await spinner.waitFor({ state: "attached" });
-            const isSpinnerVisible = () => spinner.isVisible();
-            const spinnerCount = () => spinner.count()
-            let count = 0;
-            while (await isSpinnerVisible() || await spinnerCount() > 0 || count < 5) {
-                await this.page.waitForTimeout(500);
-                count++
-            }
+        const spinner = new ByCssElement(this.page, ".cui-spinner-loading").get();
+        await spinner.waitFor({ state: "attached" });
+        const isSpinnerVisible = () => spinner.isVisible();
+        const spinnerCount = () => spinner.count();
+        let count = 0;
+        while ((await isSpinnerVisible()) || (await spinnerCount()) > 0 || count < 5) {
+            await this.page.waitForTimeout(500);
+            count++;
+        }
     }
 }

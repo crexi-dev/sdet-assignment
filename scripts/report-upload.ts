@@ -1,4 +1,4 @@
-import { uploadDirect } from '@uploadcare/upload-client'
+import { uploadDirect } from "@uploadcare/upload-client";
 import * as path from "path";
 import * as fs from "fs";
 import { v4 as uuid } from "uuid";
@@ -11,25 +11,19 @@ async function uploadReportFile() {
     if (!key) {
         throw new Error("No public key");
     }
-    const jsonResult = await uploadDirect(
-        fs.readFileSync(jsonFile),
-        {
-            publicKey: key,
-            store: "auto",
-            // This would be a more meaningful name.
-            fileName: `${uuid()}.json`
-        }
-    )
+    const jsonResult = await uploadDirect(fs.readFileSync(jsonFile), {
+        publicKey: key,
+        store: "auto",
+        // This would be a more meaningful name.
+        fileName: `${uuid()}.json`,
+    });
     console.log(`Uploaded json report to ${jsonResult.cdnUrl}`);
-    const htmlResult = await uploadDirect(
-        fs.readFileSync(htmlFile),
-        {
-            publicKey: key,
-            store: 'auto',
-            // This would be a more meaningful name.
-            fileName: `${uuid()}.html`
-        }
-    );
+    const htmlResult = await uploadDirect(fs.readFileSync(htmlFile), {
+        publicKey: key,
+        store: "auto",
+        // This would be a more meaningful name.
+        fileName: `${uuid()}.html`,
+    });
     console.log(`Uploaded html report to ${htmlResult.cdnUrl}`);
 }
 

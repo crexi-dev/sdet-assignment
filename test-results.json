@@ -114,12 +114,18 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 8222,
+                      "duration": 6449,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-10-08T04:59:18.387Z",
+                      "steps": [
+                        {
+                          "title": "Logging in with existing user.",
+                          "duration": 4070
+                        }
+                      ],
+                      "startTime": "2024-10-08T18:02:15.633Z",
                       "attachments": []
                     }
                   ],
@@ -128,7 +134,7 @@
               ],
               "id": "41d3fd2474a19feb00a1-24c4fec38d5413f5b9b3",
               "file": "login.spec.ts",
-              "line": 26,
+              "line": 28,
               "column": 9
             },
             {
@@ -146,12 +152,22 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 8923,
+                      "duration": 7318,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-10-08T04:59:18.395Z",
+                      "steps": [
+                        {
+                          "title": "Entering user credentials and submitting.",
+                          "duration": 1087
+                        },
+                        {
+                          "title": "Confirming validation message",
+                          "duration": 1868
+                        }
+                      ],
+                      "startTime": "2024-10-08T18:02:15.623Z",
                       "attachments": []
                     }
                   ],
@@ -160,7 +176,7 @@
               ],
               "id": "41d3fd2474a19feb00a1-f0de0566771a3aec54ea",
               "file": "login.spec.ts",
-              "line": 31,
+              "line": 35,
               "column": 9
             }
           ]
@@ -177,7 +193,7 @@
         {
           "title": "Profile Tests",
           "file": "profile.spec.ts",
-          "line": 9,
+          "line": 8,
           "column": 6,
           "specs": [
             {
@@ -195,12 +211,22 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 14023,
+                      "duration": 11203,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-10-08T04:59:18.387Z",
+                      "steps": [
+                        {
+                          "title": "Verifying profile page to load.",
+                          "duration": 2568
+                        },
+                        {
+                          "title": "Upload new profile picture for user.",
+                          "duration": 522
+                        }
+                      ],
+                      "startTime": "2024-10-08T18:02:15.630Z",
                       "attachments": []
                     }
                   ],
@@ -209,7 +235,7 @@
               ],
               "id": "e8b79b4ee550a37632f1-a65e98dafcb667f86cfe",
               "file": "profile.spec.ts",
-              "line": 31,
+              "line": 33,
               "column": 9
             }
           ]
@@ -226,7 +252,7 @@
         {
           "title": "Properties Tests",
           "file": "properties.spec.ts",
-          "line": 9,
+          "line": 8,
           "column": 6,
           "specs": [
             {
@@ -244,12 +270,22 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 8875,
+                      "duration": 10873,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-10-08T04:59:18.390Z",
+                      "steps": [
+                        {
+                          "title": "Search for properties in Los Angeles, CA",
+                          "duration": 615
+                        },
+                        {
+                          "title": "Verify user was taken to the property listings page, and properties matching search term are display.",
+                          "duration": 2936
+                        }
+                      ],
+                      "startTime": "2024-10-08T18:02:15.637Z",
                       "attachments": []
                     }
                   ],
@@ -258,7 +294,7 @@
               ],
               "id": "f03b289860306a08f0a9-dc0049571a5c6185a136",
               "file": "properties.spec.ts",
-              "line": 33,
+              "line": 34,
               "column": 9
             },
             {
@@ -276,12 +312,26 @@
                     {
                       "workerIndex": 4,
                       "status": "passed",
-                      "duration": 13471,
+                      "duration": 11999,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-10-08T04:59:18.396Z",
+                      "steps": [
+                        {
+                          "title": "Searching for properties in Los Angeles, CA, and waiting for user to be taken to results.",
+                          "duration": 3493
+                        },
+                        {
+                          "title": "Clicking on first listed property, and going to newly opened tab.",
+                          "duration": 511
+                        },
+                        {
+                          "title": "Verify property details loaded are correct.",
+                          "duration": 1269
+                        }
+                      ],
+                      "startTime": "2024-10-08T18:02:15.628Z",
                       "attachments": []
                     }
                   ],
@@ -290,7 +340,7 @@
               ],
               "id": "f03b289860306a08f0a9-37183fcbd599104f9e2f",
               "file": "properties.spec.ts",
-              "line": 41,
+              "line": 54,
               "column": 9
             }
           ]
@@ -325,12 +375,22 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 10486,
+                      "duration": 10417,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-10-08T04:59:27.014Z",
+                      "steps": [
+                        {
+                          "title": "Filtering search to only include retail locations, and searching for properties in Los Angeles, CA",
+                          "duration": 3046
+                        },
+                        {
+                          "title": "Verifying retail properties are displayed.",
+                          "duration": 3213
+                        }
+                      ],
+                      "startTime": "2024-10-08T18:02:22.442Z",
                       "attachments": []
                     }
                   ],
@@ -339,7 +399,7 @@
               ],
               "id": "a088064de9fe351eef5f-1f56431e46926bd72598",
               "file": "search.spec.ts",
-              "line": 31,
+              "line": 33,
               "column": 9
             }
           ]
@@ -356,7 +416,7 @@
         {
           "title": "Sign Up Tests",
           "file": "sign-up.spec.ts",
-          "line": 7,
+          "line": 6,
           "column": 6,
           "specs": [
             {
@@ -372,14 +432,24 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "status": "passed",
-                      "duration": 5415,
+                      "duration": 5264,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-10-08T04:59:27.653Z",
+                      "steps": [
+                        {
+                          "title": "Open the signup popup and enter randomly generated user data",
+                          "duration": 938
+                        },
+                        {
+                          "title": "Validate user was created.",
+                          "duration": 2563
+                        }
+                      ],
+                      "startTime": "2024-10-08T18:02:23.342Z",
                       "attachments": []
                     }
                   ],
@@ -388,7 +458,7 @@
               ],
               "id": "7de61bd70f4ebd7bb240-a2eca0e383f51490d96d",
               "file": "sign-up.spec.ts",
-              "line": 23,
+              "line": 27,
               "column": 9
             }
           ]
@@ -398,8 +468,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-10-08T04:59:18.018Z",
-    "duration": 19545.905,
+    "startTime": "2024-10-08T18:02:15.305Z",
+    "duration": 17617.921,
     "expected": 7,
     "skipped": 0,
     "unexpected": 0,
