@@ -8,7 +8,8 @@
     "test": "playwright test --project chromium",
     "test:ui": "playwright test --ui",
     "test:firefox": "playwright test --project firefox",
-    "test:webkit": "playwright test --project webkit"
+    "test:webkit": "playwright test --project webkit",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +34,7 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "eslint-webpack-plugin": "^4.2.0",
     "fs": "^0.0.1-security",
+    "husky": "^9.1.6",
     "playwright": "^1.47.2",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
