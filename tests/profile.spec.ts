@@ -40,7 +40,8 @@ test.describe("Profile Tests", () => {
         /**
          * Currently image does not persist on user's profile, even though there are no errors,
          * and the image is displayed as the user's profile avatar in the modal.
-         * or any failing API requests, would bring up with developers as to why this might be the case,
+         * No failing API requests either.
+         * Would bring up with developers as to why this might be the case,
          * and if this is expected behavior or not.
          */
         await test.step("Upload new profile picture for user.", async () => {
