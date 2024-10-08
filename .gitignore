@@ -1,0 +1,8 @@
+node_modules/
+/test-results/
+# In real world html report would not be tracked.
+# /playwright-report/
+/blob-report/
+/playwright/.cache/
+# In real world report file would not be tracked.
+# test-results.json
